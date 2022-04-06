@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import redirect, render, HttpResponse
 from django.contrib.auth import login, authenticate
 
 from .models import Article
@@ -12,6 +12,16 @@ def index(request):
     articles = Article.objects.filter(user = request.user)
 
     i = 0
+
+    if request.method == "POST":
+        title = request.POST.get("title")
+
+        article = Article()
+        article.user = request.user
+        article.title = title
+        article.save()
+
+        return redirect("index")
 
     context = {
                 "articles" : articles,

@@ -51,6 +51,14 @@ $(document).ready( function () {
         ]
         */
     } );
+    table.on( 'select', function ( e, dt, type, indexes ) {
+        document.getElementById("allRemove").style.display='block';
+    } );
+    table.on( 'deselect', function ( e, dt, type, indexes ) {
+        if( table.rows('.selected').data().length === 0){
+            document.getElementById("allRemove").style.display='none';
+        }
+    } );
     $('#checkAllProducts').click(function(){
         if($(this).is(':checked')){
             table.rows().select();
@@ -69,5 +77,33 @@ $(document).ready( function () {
         for (let i = 0; i < dataArr.length; i++) {
             window.location = "/user/deleteproducts/"+dataArr;
         }
+    } );
+    //Remove Rows
+    $('#allRemove').click( function () {
+        const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: true
+        })
+        
+        swalWithBootstrapButtons.fire({
+        title: 'Satırlar Silinsin mi?',
+        text: "Seçili satırlar kalıcı olarak silinecektir.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sil',
+        cancelButtonText: 'Vazgeç',
+        reverseButtons: true
+        }).then((result) => {
+        if (result.isConfirmed) {
+            swalWithBootstrapButtons.fire(
+            'Silindi!',
+            'Satırlar başarıyla silindi.',
+            'success'
+            )
+        }
+        })
     } );
 } );
