@@ -3,11 +3,33 @@
 {% block body %}
 
 <div class="title" style="text-align: center;">
-    <h3>MATEMATİK RÖNTGENİ</h3>
-    <h4>CASE STUDY</h4>
+    <h3>CASE STUDY</h3>
 </div>
 <div class="table">
-    
+    {% if articles %}
+    <table id="dataTable" class="display">
+        <thead>
+            <tr>
+                <th>
+                    <input type="checkbox" id="checkAllProducts" onclick="myFunction()">
+                </th>
+                <th style="display: none;"></th>
+                <th>Title</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+            <tr>
+                <td class="select-checkbox"></td>
+                <td style="display: none;"></td>
+                <td>{{ article.title }}</td>
+                <td>{{ article.created_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
 </div>
 
 {% endblock  %}
