@@ -11,18 +11,16 @@
         <thead>
             <tr>
                 <th>
-                    <input type="checkbox" id="checkAllProducts" onclick="myFunction()">
+                    <input type="checkbox" id="checkAllProducts" onclick="function()">
                 </th>
-                <th style="display: none;"></th>
                 <th>Title</th>
                 <th>Date</th>
             </tr>
         </thead>
         <tbody>
             {% for article in articles %}
-            <tr>
+            <tr class="odd">
                 <td class="select-checkbox"></td>
-                <td style="display: none;"></td>
                 <td>{{ article.title }}</td>
                 <td>{{ article.created_date }}</td>
             </tr>

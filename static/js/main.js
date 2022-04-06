@@ -62,7 +62,7 @@ $(document).ready( function () {
     });
     $('#allRRemove').click( function () {
         var dataArr = [];
-        $.each($("#example tr.selected"),function(){
+        $.each($("#dataTable tr.selected"),function(){
             dataArr.push($(this).find('td').eq(2).text()); 
         });
         table.rows('.selected').remove().draw( false );
