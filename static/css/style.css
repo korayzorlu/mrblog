@@ -8,3 +8,5 @@
 #allRemove{display: none; border: 0px solid; border-radius: 6px; padding: 6px; background-color: #ff6961; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer;}
 .articleIdTh,
 .articleIdTd{display: none;}
+.selectorBox{padding: 20px;}
+#tableRowNumber{font-size: 30px; font-weight: 600; color: #ff6961;}

@@ -21,13 +21,18 @@ $(document).ready( function () {
         },
     });
     //Select Rows
+    $("#tableRowNumber").text("Seçilen Satır Sayısı: " + 0);
     table.on( 'select', function ( e, dt, type, indexes ) {
         document.getElementById("allRemove").style.display='block';
+        var count = table.rows( { selected: true } ).count();
+        $("#tableRowNumber").text("Seçilen Satır Sayısı: " + count);
     });
     table.on( 'deselect', function ( e, dt, type, indexes ) {
         if( table.rows('.selected').data().length === 0){
             document.getElementById("allRemove").style.display='none';
         }
+        var count = table.rows( { selected: true } ).count();
+        $("#tableRowNumber").text("Seçilen Satır Sayısı: " + count);
     });
     $('#checkAllProducts').click(function(){
         if($(this).is(':checked')){
