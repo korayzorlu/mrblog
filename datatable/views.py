@@ -1,14 +1,12 @@
 from django.shortcuts import redirect, render, HttpResponse, get_object_or_404
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 
 from .models import Article
 
 # Create your views here.
-
+@login_required(login_url = "/admin")
 def index(request):
-    user = authenticate(username = "admin", password = "administration")
-    login(request, user)
-
     articles = Article.objects.filter(user = request.user)
 
     i = 0
