@@ -1,4 +1,5 @@
 $(document).ready( function () {
+    //Table
     var table = $('#dataTable').DataTable( {
         responsive: true,
         columnDefs: [ {
@@ -15,15 +16,19 @@ $(document).ready( function () {
         order: [[ 1, 'asc' ]],
         "bDestroy": true,
         "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "Tümü"]],
-    } );
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/tr.json"
+        },
+    });
+    //Select Rows
     table.on( 'select', function ( e, dt, type, indexes ) {
         document.getElementById("allRemove").style.display='block';
-    } );
+    });
     table.on( 'deselect', function ( e, dt, type, indexes ) {
         if( table.rows('.selected').data().length === 0){
             document.getElementById("allRemove").style.display='none';
         }
-    } );
+    });
     $('#checkAllProducts').click(function(){
         if($(this).is(':checked')){
             table.rows().select();
