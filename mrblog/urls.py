@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from datatable.views import index
+from datatable.views import index, addRow, deleteRow
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name = "index"),
+    path('add/<str:title>', addRow, name = "addRow"),
+    path('delete/<str:list>', deleteRow, name = "deleteRow"),
 ]

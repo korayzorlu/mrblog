@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render, HttpResponse
+from django.shortcuts import redirect, render, HttpResponse, get_object_or_404
 from django.contrib.auth import login, authenticate
 
 from .models import Article
@@ -13,19 +13,28 @@ def index(request):
 
     i = 0
 
-    if request.method == "POST":
-        title = request.POST.get("title")
-
-        article = Article()
-        article.user = request.user
-        article.title = title
-        article.save()
-
-        return redirect("index")
-
     context = {
                 "articles" : articles,
                 "i" : i
             }
 
     return render(request, "index.html", context)
+
+def addRow(request, title):
+
+    newTitle = title
+    article = Article()
+    article.user = request.user
+    article.title = newTitle
+    article.save()
+
+    return redirect("index")
+
+def deleteRow(request, list):
+
+    idList = list.split(",")
+    for id in idList:
+        article = Article.objects.filter(id = id)
+        article.delete()
+
+    return redirect("index")
